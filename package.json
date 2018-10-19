@@ -1,0 +1,23 @@
+{
+    "name": "NavRedis",
+    "version": "0.1.0",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "start-dev": "electron .",
+        "start-test": "electron .",
+        "start-prod": "electron ."
+    },
+    "devDependencies": {
+        "electron": "^3.0.3"
+    },
+    "dependencies": {
+        "lodash": "^4.17.11",
+        "moment": "^2.22.2",
+        "react": "^16.5.2",
+        "react-redux": "^5.0.7",
+        "react-router": "^4.3.1",
+        "redux": "^4.0.1",
+        "sqlite3": "^4.0.2"
+    }
+}
