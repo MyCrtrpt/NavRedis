@@ -32,6 +32,8 @@
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
         <link rel="stylesheet" href="src/assets/css/main.css">
 
+        <link rel="stylesheet" href="src/index.css">
+
         <!-- Include a specific file here from css/themes/ folder to alter the default theme of the template -->
 
         <!-- The themes stylesheet of this template (for using specific theme color in individual elements - must included last) -->
@@ -44,7 +46,7 @@
         <script src="src/assets/highlightjs/highlight.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 
-
+        <script>var pjson = require('./package.json');</script>
         <!-- Modernizr (browser feature detection library) -->
         <script src="src/assets/js/vendor/modernizr-3.3.1.min.js"></script>
     </head>
@@ -66,7 +68,7 @@
                     <div class="preloader-spinner themed-background hidden-lt-ie10"></div>
 
                     <!-- Text for IE9 -->
-                    <h3 class="text-primary visible-lt-ie10"><strong>加载中..</strong></h3>
+                    <h3 class="text-primary visible-lt-ie10"><strong>loading..</strong></h3>
                 </div>
             </div>
             <!-- END Preloader -->
@@ -117,12 +119,15 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="javascript:;" id="NavRedis" class="sidebar-title">
+                        <a href="javascript:;"  class="sidebar-title">
                             <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">Nav<strong>Redis</strong></span>
                         </a>
                     </div>
                     <!-- END Sidebar Brand -->
-
+                    <ul class="nav navbar-nav-custom pull-right">
+                        <li>@</li>
+                        <li></li>
+                    </ul>
                     <!-- Wrapper for scrolling functionality -->
                     <div id="sidebar-scroll">
                         <!-- Sidebar Content -->
@@ -220,6 +225,23 @@
                                 <!-- </pre> -->
                                 <!-- END Example Content -->
                             </div>
+                        </div>
+                        <div id="page-content-dashboard">
+                                <div class="row">
+                                    <div class="col-sm-6 col-lg-3">
+                                        <a href="login.html" class="widget">
+                                            <div class="widget-content widget-content-mini text-right clearfix">
+                                                <div class="widget-icon pull-left themed-background">
+                                                    <i class="gi gi-cardio text-light-op"></i>
+                                                </div>
+                                                <h2 class="widget-heading h3">
+                                                    <strong><span data-toggle="counter" data-to="2835">Redis</span></strong>
+                                                </h2>
+                                                <span class="text-muted"></span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                         </div>
                         <!-- END Example Block -->
                     </div>

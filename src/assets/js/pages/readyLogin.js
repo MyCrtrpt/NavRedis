@@ -11,6 +11,7 @@ var ReadyLogin = function() {
             $('#form-login').submit(function(e){
                 key= $("#username").val()+"@"+$('#hostname').val()+":"+$('#port').val();
                 keyspace={
+                        name:$('#name').val(),
                         host:$('#hostname').val(),
                         port:$('#port').val(),
                         user:$("#username").val(),
