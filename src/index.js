@@ -9,6 +9,31 @@ window.addEventListener('contextmenu', (e) => {
 }, false)
 
 
+function send_Command(cmd,argv,callback=null){
+    if(callback==null){
+        c=function(e,r){
+            console.log(this);
+           if(e==null){
+                $("#res").text(r); 
+    
+                syncRes(this.command,this.args,r);
+                var  cmd=$("#command").val().split(" ")[0].toLowerCase()
+                switch  (cmd) {
+                    case "select":
+                        $("#db").text("DB#"+$("#command").val().split(" ")[1])
+                        break
+                    default:
+                }
+           }else{
+            $("#res").text(e.message);   
+           }
+        }
+    }else{
+        c=callback
+    }
+    currentSession.redis.send_command(cmd,argv,c);
+}
+
 $("#command").keydown((e)=>{
     
     e = event ? event :(window.event ? window.event : null); 
@@ -17,25 +42,9 @@ $("#command").keydown((e)=>{
         return;
     }
 
-    command=$("#command").val().split(" ")[0];
-    argv=$("#command").val().split(" ").slice(1);
-
-
-    currentSession.redis.send_command(command,argv,function(e,r){
-       console.log(e);
-       if(e==null){
-        $("#res").text(r);   
-        var  command=$("#command").val().split(" ")[0].toLowerCase()
-        switch  (command) {
-            case "select":
-                $("#db").text("DB#"+$("#command").val().split(" ")[1])
-                break
-            default:
-        }
-       }else{
-        $("#res").text(e.message);   
-       }
-    })
+    var cmd=$("#command").val().split(" ")[0];
+    var argv=$("#command").val().split(" ").slice(1);
+    send_Command(cmd,argv)
 })
 
 connectKey=JSON.parse(window.localStorage.connectKey==undefined?'[]':window.localStorage.connectKey);
@@ -43,6 +52,44 @@ currentSession={};
 
 function setting(i){
     alert('修改'+i)
+}
+function save(){
+    var cmd= $("#res_edit").data("command");
+    var args= $("#res_edit").data("args");
+    if(cmd!=="set"){
+        alert('当前版本只支持 get set 修改')
+    }
+    args.push($("#res_edit").val())
+    $("#save_cmd").text(cmd+" "+args.join(" "));
+    send_Command(cmd,args,function(e,r){
+        console.log("save回调");
+        console.log(this);
+        $("#save_result").text(r)
+    });
+    args.pop();
+}
+
+function syncRes(type,args,res){
+    console.log(type,args,res)
+    switch(type){
+        case "get":
+            command="set"
+            break;
+        case "set":
+            command="set"
+            break;
+        case "hget":
+            command="hset"
+            break;
+        case "hset":
+            command="hset"
+            break;
+        default:
+            command="";
+    }
+    $("#res_edit").data("command",command)
+    $("#res_edit").data("args",args)
+    $("#res_edit").text(res);  
 }
 
 function connect(i){
@@ -69,7 +116,8 @@ function connect(i){
     client.on("connect", function (err) {
         $("#session_status_"+i).addClass('text-success')
         client.send_command("info",null,function(e,r){
-            $("#res").text(r);           
+            $("#res").text(r);   
+            syncRes(command,"",r);        
         })
     });
     client.on("disconnect", function (err) {
