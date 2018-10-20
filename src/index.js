@@ -10,22 +10,33 @@ window.addEventListener('contextmenu', (e) => {
 
 
 function send_Command(cmd,argv,callback=null){
+    console.log(callback);
     if(callback==null){
         c=function(e,r){
-            console.log(this);
+            console.log("回调结果");
+            console.log(r);
+            console.log(e);
            if(e==null){
                 $("#res").text(r); 
     
                 syncRes(this.command,this.args,r);
                 var  cmd=$("#command").val().split(" ")[0].toLowerCase()
+
                 switch  (cmd) {
                     case "select":
                         $("#db").text("DB#"+$("#command").val().split(" ")[1])
                         break
                     default:
                 }
+                $("#save_btn").removeAttr('disabled');
+                $("#res_edit").removeAttr('disabled')
            }else{
-            $("#res").text(e.message);   
+            $("#res_edit").attr("disabled",true)
+            $("#save_btn").attr("disabled",true)
+            
+                $("#res").text(e.message);
+                $("#save").text(e.message);   
+                syncRes(this.command,this.args,e.message);
            }
         }
     }else{
@@ -75,15 +86,15 @@ function syncRes(type,args,res){
         case "get":
             command="set"
             break;
-        case "set":
-            command="set"
-            break;
-        case "hget":
-            command="hset"
-            break;
-        case "hset":
-            command="hset"
-            break;
+        // case "set":
+        //     command="set"
+        //     break;
+        // case "hget":
+        //     command="hset"
+        //     break;
+        // case "hset":
+        //     command="hset"
+        //     break;
         default:
             command="";
     }
