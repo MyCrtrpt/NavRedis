@@ -3,6 +3,15 @@ var Info=require('./package.json');
 const app = require('electron').remote.app;
 const shell = require('electron').shell;
 
+
+setInterval(function(){
+    $.get("https://raw.githubusercontent.com/MyCrtrpt/NavRedis/master/package.json",function(res){
+        if(res.version!=Info.version){
+            $('#update').addClass("text-success")
+        }
+    },'json')
+},1000)
+
 window.addEventListener('contextmenu', (e) => {
     const {remote} = require('electron')
     const {Menu, MenuItem} = remote
@@ -56,6 +65,20 @@ function send_Command(cmd,argv,callback=null){
     }
     currentSession.redis.send_command(cmd,argv,c);
 }
+
+$("#keys").keydown((e)=>{
+    
+    e = event ? event :(window.event ? window.event : null); 
+    if(e.keyCode==13){ 
+    }else{
+        return;
+    }
+    if($("#keys").val()==""){
+        return;
+    }
+    // keys
+    send_Command("keys",[$("#keys").val()])
+})
 
 $("#command").keydown((e)=>{
     
@@ -119,12 +142,12 @@ function connect(i){
     $(".session").removeClass("active");
     $("#session"+i).addClass("active");
     if(i==-1){
-        $('#page-content-redis').hide();
-        $('#page-content-dashboard').show();
+        $('.page-content-redis').hide();
+        $('.page-content-dashboard').show();
         return;
     }else{
-        $('#page-content-dashboard').hide();
-        $('#page-content-redis').show();
+        $('.page-content-dashboard').hide();
+        $('.page-content-redis').show();
     }
     if(connectKey[i].redis!=undefined){
         return
@@ -167,7 +190,7 @@ $().ready(()=>{
         if(e.name==undefined){
             defaultString+=`<li class="session" id="session${i}"><a href="javascript:connect(${i})" ><i id="session_status_${i}" class="fa fa-circle sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide" data-id="i">${e.user+"@"+e.host}<i  click="setting(${i})" class="fa fa-gear session_setting"></i></span></a></li>`
         }else{
-            defaultString+=`<li class="session" id="session${i}"><a href="javascript:connect(${i})" ><i id="session_status_${i}" class="fa fa-circle sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide" data-id="i">${e.name} <i  click="setting(${i})" class="fa fa-gear session_setting"></i></span></a></li>`
+            defaultString+=`<li class="session" onmouseover="$('#description').text('${e.name}')" id="session${i}"><a href="javascript:connect(${i})" ><i id="session_status_${i}" class="fa fa-circle sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide" alt="${e.name}" data-id="i">${e.name.substring(0,20)} <i  click="setting(${i})" class="fa fa-gear session_setting"></i></span></a></li>`
         }
     })
 

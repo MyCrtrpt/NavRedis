@@ -4,28 +4,28 @@ const { app, BrowserWindow,Menu } = require('electron')
 
     win = new BrowserWindow({ 
       width: 1080, 
-      height: 600,
-      frame:false
+      height: 600
+      // ,frame:false
   })
 
-    // const template = [
-    //   {
-    //     label: 'Session',
-    //     submenu: [
-    //       { id: '1', label: 'connect' },
-    //       {type: 'separator'},
-    //       { id: '2', label: 'disconnect' },
-    //     ]
-    //   }
-    // ]
+  const template = [
+      {
+        label: 'Session',
+        submenu: [
+          { id: '1', label: 'connect' },
+          {type: 'separator'},
+          { id: '2', label: 'disconnect' },
+        ]
+      }
+  ]
 
     // const menu = Menu.buildFromTemplate(template)
     // Menu.setApplicationMenu(menu)
 
-    // win.webContents.openDevTools()
-    win.on('closed', () => {
-      win = null
-    })
+    // // win.webContents.openDevTools()
+    // win.on('closed', () => {
+    //   win = null
+    // })
 
     win.loadFile('index.html')
   }

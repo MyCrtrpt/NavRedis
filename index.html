@@ -184,14 +184,14 @@
                                    
                             
                                 <li class="hidden-xs animation-fadeInQuick">
-                                        <a id="exit" href="">   <i  class="fa fa-power-off text-success"></i></a>
+                                        <a id="exit" href="">   <i  class="fa fa-power-off"></i></a>
                                 </li>
                                 <!-- END Header Link -->
                         </ul>
                     </header>
 
 
-                    <header class="navbar navbar-inverse navbar-fixed-bottom navbar-glass">
+                    <header class="page-content-redis navbar navbar-inverse navbar-fixed-bottom navbar-glass">
                             <ul class="nav navbar-nav-custom">
                                     <li class="hidden-xs animation-fadeInQuick">
                                             <a  href="javascript:;" id="db" >DB#0</a>
@@ -201,6 +201,14 @@
                                     </li>
                                     <li class="hidden-xs animation-fadeInQuick">
                                             <a  href="javascript:;" id="save_result" ></a>
+                                    </li>
+                                    <li class="hidden-xs animation-fadeInQuick">
+                                        <div class="navbar-form-custom">
+                                                <input type="text" id="command" name="command" class="form-control ui-wizard-content" placeholder="command">                                         
+                                        </div>
+                                    </li>
+                                    <li class="hidden-xs animation-fadeInQuick">
+                                            <a  href="javascript:;" id="description" ></a>
                                     </li>
                                 
                             </ul>
@@ -213,7 +221,7 @@
                                             <a  href="javascript:;" id="author" ></a>
                                     </li>
                                     <li class="hidden-xs animation-fadeInQuick">
-                                            <a class="" href="">   <i  class="fa fa-circle text-success"></i></a>
+                                            <a class="" href="">   <i id="update" class="fa fa-circle"></i></a>
                                     </li>
                                     <!-- END Header Link -->
                             </ul>
@@ -223,7 +231,7 @@
                     <!-- Page content -->
                     <div id="page-content">
                         <!-- Page Header -->
-                        <div id="page-content-redis" style="display:none">
+                        <div class="page-content-redis" style="display:none">
                             <div class="content-header">
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -239,7 +247,7 @@
                             <div class="block" style="padding-bottom:30px">
                                     <div class="row">
                                             <div class="col-sm-6">
-                                                        <input type="text" id="command" name="command" class="form-control ui-wizard-content" placeholder="command">                                         
+                                                    <input type="text" id="keys" name="keys" class="form-control ui-wizard-content" placeholder="key">                                         
                                             </div>
                                     </div>
 
@@ -263,7 +271,7 @@
                                 <!-- END Example Content -->
                             </div>
                         </div>
-                        <div id="page-content-dashboard">
+                        <div class="page-content-dashboard">
                                 <div class="row">
                                     <div class="col-sm-6 col-lg-3">
                                         <a href="login.html" class="widget">
