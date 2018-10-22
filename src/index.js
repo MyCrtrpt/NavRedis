@@ -1,4 +1,7 @@
 // 
+var Info=require('./package.json');
+
+const shell = require('electron').shell
 
 window.addEventListener('contextmenu', (e) => {
     const {remote} = require('electron')
@@ -8,6 +11,12 @@ window.addEventListener('contextmenu', (e) => {
     menu.append(new MenuItem({label: 'disconnect', click() { console.log('关闭session') }}))
 }, false)
 
+function open(url){
+    shell.openExternal(url)
+}
+
+$("#version").text(Info.version);
+$("#author").text("@"+Info.author).attr("href",`javascript:open("${Info.repository.url}")`)
 
 function send_Command(cmd,argv,callback=null){
     console.log(callback);
