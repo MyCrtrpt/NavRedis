@@ -119,7 +119,7 @@
                 <div id="sidebar">
                     <!-- Sidebar Brand -->
                     <div id="sidebar-brand" class="themed-background">
-                        <a href="javascript:;"  class="sidebar-title">
+                        <a href="javascript:;"  class="sidebar-title" style="-webkit-app-region: drag;">
                             <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">Nav<strong>Redis</strong></span>
                         </a>
                     </div>
@@ -180,7 +180,14 @@
                             <!-- END Header Link -->
                         </ul>
                         <!-- END Left Header Navigation -->
-
+                        <ul class="nav navbar-nav-custom pull-right">
+                                   
+                            
+                                <li class="hidden-xs animation-fadeInQuick">
+                                        <a id="exit" href="">   <i  class="fa fa-power-off text-success"></i></a>
+                                </li>
+                                <!-- END Header Link -->
+                        </ul>
                     </header>
 
 
@@ -204,6 +211,9 @@
                                     </li>
                                     <li class="hidden-xs animation-fadeInQuick">
                                             <a  href="javascript:;" id="author" ></a>
+                                    </li>
+                                    <li class="hidden-xs animation-fadeInQuick">
+                                            <a class="" href="">   <i  class="fa fa-circle text-success"></i></a>
                                     </li>
                                     <!-- END Header Link -->
                             </ul>
@@ -238,10 +248,10 @@
                                 <div class="row">
                                    
                                     <div class="col-sm-12">
-                                           <textarea id="res_edit" class="form-control" style="min-height:400px"></textarea>
+                                           <textarea id="res_edit" class="form-control" style="min-height:300px"></textarea>
                                     </div>
                                     <div class="col-sm-12" style="display: none">
-                                           <textarea id="res" class="form-control" style="min-height:400px"></textarea>
+                                           <textarea id="res" class="form-control" style="min-height:300px"></textarea>
                                     </div>
                                 </div>
                                 <!-- <div class="row">

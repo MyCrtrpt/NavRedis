@@ -5,6 +5,7 @@ const { app, BrowserWindow,Menu } = require('electron')
     win = new BrowserWindow({ 
       width: 1080, 
       height: 600,
+      frame:false
   })
 
     // const template = [

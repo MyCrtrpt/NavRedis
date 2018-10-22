@@ -1,7 +1,7 @@
 // 
 var Info=require('./package.json');
-
-const shell = require('electron').shell
+const app = require('electron').remote.app;
+const shell = require('electron').shell;
 
 window.addEventListener('contextmenu', (e) => {
     const {remote} = require('electron')
@@ -17,6 +17,9 @@ function open(url){
 
 $("#version").text(Info.version);
 $("#author").text("@"+Info.author).attr("href",`javascript:open("${Info.repository.url}")`)
+$("#exit").click(function(){
+    app.quit();
+})
 
 function send_Command(cmd,argv,callback=null){
     console.log(callback);
