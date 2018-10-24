@@ -10,14 +10,13 @@ setInterval(function(){
             $('#update').addClass("text-success")
         }
     },'json')
-},1000)
+},1000*60*10)
+
+
 
 window.addEventListener('contextmenu', (e) => {
-    const {remote} = require('electron')
-    const {Menu, MenuItem} = remote
-    const menu=new Menu();
-    menu.append(new MenuItem({label: 'connect', click() { console.log('新建session') }}))
-    menu.append(new MenuItem({label: 'disconnect', click() { console.log('关闭session') }}))
+   
+  
 }, false)
 
 function open(url){
@@ -195,7 +194,22 @@ $().ready(()=>{
     })
 
  connectList.html(defaultString)    
+
+
+ $(".session").mouseup(function(event){
+    console.log(event);
+    (event) => {
+        var e = event || window.event;
+        let nType = e.button;
+        if (2 === nType) {
+            showRightClickMenu();
+        }
+        e.stopPropagation();
+    }
+});
 })
+
+
 
 $("#NavRedis").click(()=>{
     window.location.href="login.html"
