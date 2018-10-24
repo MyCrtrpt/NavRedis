@@ -2,11 +2,11 @@
     "name": "NavRedis",
     "version": "0.1.1",
     "main": "main.js",
-    "author":"MyCrtrpt",
+    "author": "MyCrtrpt",
     "repository": {
-		"type": "git",
-		"url": "https://github.com/MyCrtrpt/NavRedis.git"
-	},
+        "type": "git",
+        "url": "https://github.com/MyCrtrpt/NavRedis.git"
+    },
     "scripts": {
         "start": "electron .",
         "start-dev": "electron .",
@@ -17,14 +17,12 @@
         "electron": "^3.0.3"
     },
     "dependencies": {
-        "jquery": "^3.3.1",
         "lodash": "^4.17.11",
         "moment": "^2.22.2",
-        "react": "^16.5.2",
-        "react-redux": "^5.0.7",
-        "react-router": "^4.3.1",
         "redis": "^2.8.0",
         "redux": "^4.0.1",
-        "sqlite3": "^4.0.2"
+        "vue": "^2.5.17",
+        "vuex": "^3.0.1",
+        "vuex-router": "^1.1.5"
     }
 }
