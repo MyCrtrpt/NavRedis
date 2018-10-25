@@ -14,7 +14,8 @@
         "start-prod": "electron ."
     },
     "devDependencies": {
-        "electron": "^3.0.3"
+        "electron": "^3.0.3",
+        "vueify": "^9.4.1"
     },
     "dependencies": {
         "lodash": "^4.17.11",
@@ -22,6 +23,7 @@
         "redis": "^2.8.0",
         "redux": "^4.0.1",
         "vue": "^2.5.17",
+        "vue-loader": "^15.4.2",
         "vuex": "^3.0.1",
         "vuex-router": "^1.1.5"
     }

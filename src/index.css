@@ -11,3 +11,6 @@
 /* .save_cmd ,save_results{
 
 } */
+html,body,#app,#page-wrapper,#page-container,#main-container,#page-content{
+    height: 100%;
+}
