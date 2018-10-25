@@ -1,57 +1,82 @@
 <!DOCTYPE html>
 <!--[if IE 9]>         <html class="no-js lt-ie10" lang="en"> <![endif]-->
-<!--[if gt IE 9]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <title>NavRedis</title>
-        <meta name="description" content="AppUI is a Web App Bootstrap Admin Template created by pixelcave and published on Themeforest">
-        <meta name="author" content="pixelcave">
-        <meta name="robots" content="noindex, nofollow">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
 
-        <!-- Icons -->
-        <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="src/assets/img/favicon.png">
-        <link rel="apple-touch-icon" href="src/assets/img/icon57.png" sizes="57x57">
-        <link rel="apple-touch-icon" href="src/assets/img/icon72.png" sizes="72x72">
-        <link rel="apple-touch-icon" href="src/assets/img/icon76.png" sizes="76x76">
-        <link rel="apple-touch-icon" href="src/assets/img/icon114.png" sizes="114x114">
-        <link rel="apple-touch-icon" href="src/assets/img/icon120.png" sizes="120x120">
-        <link rel="apple-touch-icon" href="src/assets/img/icon144.png" sizes="144x144">
-        <link rel="apple-touch-icon" href="src/assets/img/icon152.png" sizes="152x152">
-        <link rel="apple-touch-icon" href="src/assets/img/icon180.png" sizes="180x180">
-        <!-- END Icons -->
+<head>
+    <meta charset="utf-8">
+    <title>NavRedis</title>
+    <meta name="description" content="AppUI is a Web App Bootstrap Admin Template created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
 
-        <!-- Stylesheets -->
-        <!-- Bootstrap is included in its original form, unaltered -->
-        <link rel="stylesheet" href="src/assets/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="src/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="src/assets/img/icon57.png" sizes="57x57">
+    <link rel="apple-touch-icon" href="src/assets/img/icon72.png" sizes="72x72">
+    <link rel="apple-touch-icon" href="src/assets/img/icon76.png" sizes="76x76">
+    <link rel="apple-touch-icon" href="src/assets/img/icon114.png" sizes="114x114">
+    <link rel="apple-touch-icon" href="src/assets/img/icon120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="src/assets/img/icon144.png" sizes="144x144">
+    <link rel="apple-touch-icon" href="src/assets/img/icon152.png" sizes="152x152">
+    <link rel="apple-touch-icon" href="src/assets/img/icon180.png" sizes="180x180">
+    <!-- END Icons -->
 
-        <!-- Related styles of various icon packs and plugins -->
-        <link rel="stylesheet" href="src/assets/css/plugins.css">
+    <!-- Stylesheets -->
+    <!-- Bootstrap is included in its original form, unaltered -->
+    <link rel="stylesheet" href="src/assets/css/bootstrap.min.css">
 
-        <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
-        <link rel="stylesheet" href="src/assets/css/main.css">
+    <!-- Related styles of various icon packs and plugins -->
+    <link rel="stylesheet" href="src/assets/css/plugins.css">
 
-        <link rel="stylesheet" href="src/index.css">
+    <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
+    <link rel="stylesheet" href="src/assets/css/main.css">
 
-        <link rel="stylesheet" href="src/assets/css/themes/passion.css">
-        <!-- END Stylesheets --> 
-        <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vuex@2.0.0/dist/vuex.js"></script> -->
+    <link rel="stylesheet" href="src/index.css">
 
-    </head>
-    <body >
-       <div id="app">
-            <div id="page-wrapper" >
-                <!-- Preloader -->
-                <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
-                <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
-            
-                <!-- END Preloader -->
+    <link rel="stylesheet" href="src/assets/css/themes/passion.css">
+    <link rel="stylesheet" href="node_modules/element-ui/lib/theme-chalk/index.css">
 
-                <!-- Page Container -->
-                <!-- In the PHP version you can set the following options from inc/config file -->
-                <!--
+</head>
+
+<body>
+    <div id="app">
+        <div id="page-wrapper">
+
+            <el-dialog title="session" :visible.sync="dialogVisible" width="50%" :before-close="handleClose">
+                <el-form ref="form" :model="new_session" label-width="80px">
+                    <el-form-item label="name:">
+                        <el-input v-model="new_session.name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="host:">
+                        <el-input v-model="new_session.info.host"></el-input>
+                    </el-form-item>
+                    <el-form-item label="port:">
+                        <el-input v-model="new_session.info.port"></el-input>
+                    </el-form-item>
+                    <el-form-item label="user:">
+                        <el-input v-model="new_session.info.user"></el-input>
+                    </el-form-item>
+                    <el-form-item label="password:">
+                        <el-input v-model="new_session.info.password"></el-input>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="dialogVisible = false">close</el-button>
+                    <el-button type="primary" @click="handleSave()">save</el-button>
+                </span>
+            </el-dialog>
+
+            <!-- Preloader -->
+            <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
+            <!-- Used only if page preloader enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
+
+            <!-- END Preloader -->
+
+            <!-- Page Container -->
+            <!-- In the PHP version you can set the following options from inc/config file -->
+            <!--
                     Available #page-container classes:
 
                     'sidebar-light'                                 for a light main sidebar (You can add it along with any other class)
@@ -68,71 +93,71 @@
 
                     'enable-cookies'                                enables cookies for remembering active color theme when changed from the sidebar links (You can add it along with any other class)
                 -->
-                <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
-                    <!-- Alternative Sidebar -->
-                    <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
-                        <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
-                        <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i class="fa fa-times"></i></a>
+            <div id="page-container" class="header-fixed-top sidebar-visible-lg-full">
+                <!-- Alternative Sidebar -->
+                <div id="sidebar-alt" tabindex="-1" aria-hidden="true">
+                    <!-- Toggle Alternative Sidebar Button (visible only in static layout) -->
+                    <a href="javascript:void(0)" id="sidebar-alt-close" onclick="App.sidebar('toggle-sidebar-alt');"><i
+                            class="fa fa-times"></i></a>
 
-                        <!-- Wrapper for scrolling functionality -->
-                        <div id="sidebar-scroll-alt">
-                            <!-- Sidebar Content -->
-                            <div class="sidebar-content">
-                                <!-- Sidebar Section -->
-                                <div class="sidebar-section">
-                                    <h2 class="text-light">Header</h2>
-                                    <p>Section content..</p>
-                                </div>
-                                <!-- END Sidebar Section -->
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll-alt">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Sidebar Section -->
+                            <div class="sidebar-section">
+                                <h2 class="text-light">Header</h2>
+                                <p>Section content..</p>
                             </div>
-                            <!-- END Sidebar Content -->
+                            <!-- END Sidebar Section -->
                         </div>
-                        <!-- END Wrapper for scrolling functionality -->
+                        <!-- END Sidebar Content -->
                     </div>
-                    <!-- END Alternative Sidebar -->
+                    <!-- END Wrapper for scrolling functionality -->
+                </div>
+                <!-- END Alternative Sidebar -->
 
-                    <!-- Main Sidebar -->
-                    <div id="sidebar">
-                        <!-- Sidebar Brand -->
-                        <div id="sidebar-brand" class="themed-background">
-                            <a href="javascript:;"  class="sidebar-title" style="-webkit-app-region: drag;">
-                                <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">Nav<strong>Redis</strong></span>
-                            </a>
-                        </div>
-                        <!-- END Sidebar Brand -->
-                        <ul class="nav navbar-nav-custom pull-right">
-                            <li>@</li>
-                            <li></li>
-                        </ul>
-                        <!-- Wrapper for scrolling functionality -->
-                        <div id="sidebar-scroll">
-                            <!-- Sidebar Content -->
-                            <div class="sidebar-content">
-                                <!-- Sidebar Navigation -->
-                                <ul class="sidebar-nav" id="connectList">
-                                    <li>
-                                        <a href="javascript:;"><i class=" gi gi-compass sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
-                                    </li>
-                                    <li class="sidebar-separator">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </li>
-                                    <li   v-for="s in session" keys="s.id" class="session" ><a href="javascript:;" ><i  class="fa fa-circle sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide" >{{s.name}}</span><i   class="fa fa-gear session_setting"></i></span></a></li>
-                                </ul>
-                                <!-- END Sidebar Navigation -->
+                <!-- Main Sidebar -->
+                <div id="sidebar">
+                    <!-- Sidebar Brand -->
+                    <div id="sidebar-brand" class="themed-background">
+                        <a href="javascript:;" class="sidebar-title" style="-webkit-app-region: drag;">
+                            <i class="fa fa-cube"></i> <span class="sidebar-nav-mini-hide">Nav<strong>Redis</strong></span>
+                        </a>
+                    </div>
 
-                                <!-- Color Themes -->
-                                <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
-                                <!-- END Color Themes -->
-                            </div>
+                    <!-- Wrapper for scrolling functionality -->
+                    <div id="sidebar-scroll">
+                        <!-- Sidebar Content -->
+                        <div class="sidebar-content">
+                            <!-- Sidebar Navigation -->
+                            <ul class="sidebar-nav" id="connectList">
+                                <li>
+                                    <a href="javascript:;" v-on:click="handleClickDashboard()"><i class=" gi gi-compass sidebar-nav-icon"></i><span
+                                            class="sidebar-nav-mini-hide">Dashboard</span></a>
+                                </li>
+                                <li class="sidebar-separator">
+                                    <i class="fa fa-ellipsis-h"></i>
+                                </li>
+                                <li v-for="s in session" :key="s.id" :class="s.id==cur_session.id?'active':''"
+                                    v-on:click="handleClickSession(s)"><a href="javascript:;"><i class="fa fa-circle sidebar-nav-icon"></i><span
+                                            class="sidebar-nav-mini-hide">{{s.name}}</span></span></a></li>
+                            </ul>
+                            <!-- END Sidebar Navigation -->
+
+                            <!-- Color Themes -->
+                            <!-- Preview a theme on a page functionality can be found in js/app.js - colorThemePreview() -->
+                            <!-- END Color Themes -->
                         </div>
                     </div>
-                    <!-- END Main Sidebar -->
+                </div>
+                <!-- END Main Sidebar -->
 
-                    <!-- Main Container -->
-                    <div id="main-container">
-                        <!-- Header -->
-                        <!-- In the PHP version you can set the following options from inc/config file -->
-                        <!--
+                <!-- Main Container -->
+                <div id="main-container">
+                    <!-- Header -->
+                    <!-- In the PHP version you can set the following options from inc/config file -->
+                    <!--
                             Available header.navbar classes:
 
                             'navbar-default'            for the default light header
@@ -144,151 +169,160 @@
                             'navbar-fixed-bottom'       for a bottom fixed header (fixed main sidebar with scroll will be auto initialized, functionality can be found in js/app.js - handleSidebar()))
                                 'header-fixed-bottom'   has to be added on #page-container only if the class 'navbar-fixed-bottom' was added
                         -->
-                        <header class="navbar navbar-inverse navbar-fixed-top">
-                            <!-- Left Header Navigation -->
-                            <ul class="nav navbar-nav-custom">
-                                <!-- Main Sidebar Toggle Button -->
-                                <li>
-                                    <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
-                                        <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
-                                        <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
-                                    </a>
-                                </li>
-                                <!-- END Main Sidebar Toggle Button -->
+                    <header class="navbar navbar-inverse navbar-fixed-top">
+                        <!-- Left Header Navigation -->
+                        <ul class="nav navbar-nav-custom">
+                            <!-- Main Sidebar Toggle Button -->
+                            <li>
+                                <a href="javascript:void(0)" v-on:click="sidebar()">
+                                    <i class="fa fa-ellipsis-v fa-fw animation-fadeInRight" id="sidebar-toggle-mini"></i>
+                                    <i class="fa fa-bars fa-fw animation-fadeInRight" id="sidebar-toggle-full"></i>
+                                </a>
+                            </li>
+                            <!-- END Main Sidebar Toggle Button -->
 
-                                <!-- Header Link -->
-                            
-                                <!-- END Header Link -->
-                            </ul>
-                            <!-- END Left Header Navigation -->
-                            <ul class="nav navbar-nav-custom pull-right">
-                                    
-                                
-                                    <li class="hidden-xs animation-fadeInQuick">
-                                            <a id="exit" href="">   <i  class="fa fa-power-off"></i></a>
-                                    </li>
-                                    <!-- END Header Link -->
-                            </ul>
-                        </header>
+                            <!-- Header Link -->
+
+                            <!-- END Header Link -->
+                        </ul>
+                        <!-- END Left Header Navigation -->
+                        <ul class="nav navbar-nav-custom pull-right">
 
 
-                        <header class="page-content-redis navbar navbar-inverse navbar-fixed-bottom navbar-glass">
-                                <ul class="nav navbar-nav-custom">
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a  href="javascript:;" id="db" >DB#0</a>
-                                        </li>
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a  href="javascript:;" id="save_cmd" ></a>
-                                        </li>
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a  href="javascript:;" id="save_result" ></a>
-                                        </li>
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                            <div class="navbar-form-custom">
-                                                    <input type="text" id="command" name="command" class="form-control ui-wizard-content" placeholder="command">                                         
-                                            </div>
-                                        </li>
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a  href="javascript:;" id="description" ></a>
-                                        </li>
-                                    
-                                </ul>
-                                <ul class="nav navbar-nav-custom pull-right">
-                                    
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a  href="javascript:;" id="version" ></a>
-                                        </li>
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a  href="javascript:;" id="author" ></a>
-                                        </li>
-                                        <li class="hidden-xs animation-fadeInQuick">
-                                                <a class="" href="">   <i id="update" class="fa fa-circle"></i></a>
-                                        </li>
-                                        <!-- END Header Link -->
-                                </ul>
-                        </header>
-                        <!-- END Header -->
+                            <li class="hidden-xs animation-fadeInQuick" v-on:click="exit()">
+                                <a id="exit" href=""> <i class="fa fa-power-off"></i></a>
+                            </li>
+                            <!-- END Header Link -->
+                        </ul>
+                    </header>
 
-                        <!-- Page content -->
-                        <div id="page-content">
-                            <!-- Page Header -->
-                            <div class="page-content-redis" style="display:none">
-                                <div class="content-header">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="header-section">
-                                                <h1 ></h1>
-                                            </div>
+
+                    <header class="page-content-redis navbar navbar-inverse navbar-fixed-bottom navbar-glass" v-if="cur_session.id!==undefined">
+                        <ul class="nav navbar-nav-custom">
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;">{{cur_session.info.user}}@{{cur_session.info.host}}:{{cur_session.info.port}}</a>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;" id="db">0</a>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;" id="save_cmd"></a>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;" id="save_result"></a>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <div class="navbar-form-custom">
+                                    <input type="text" id="command" name="command" class="form-control ui-wizard-content"
+                                        placeholder="command">
+                                </div>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;" id="description"></a>
+                            </li>
+
+                        </ul>
+                        <ul class="nav navbar-nav-custom pull-right">
+
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;" id="version"></a>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a href="javascript:;" id="author"></a>
+                            </li>
+                            <li class="hidden-xs animation-fadeInQuick">
+                                <a class="" href=""> <i id="update" class="fa fa-circle"></i></a>
+                            </li>
+                            <!-- END Header Link -->
+                        </ul>
+                    </header>
+                    <!-- END Header -->
+
+                    <!-- Page content -->
+                    <div id="page-content">
+                        <!-- Page Header -->
+                        <div class="page-content-redis" style="display:none">
+                            <div class="content-header">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="header-section">
+                                            <h1></h1>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="content-header">
-                                    
-                                    </div>
-                                <div class="block" style="padding-bottom:30px">
-                                        <div class="row">
-                                                <div class="col-sm-6">
-                                                        <input type="text" id="keys" name="keys" class="form-control ui-wizard-content" placeholder="key">                                         
-                                                </div>
-                                        </div>
+                            </div>
+                            <div class="content-header">
 
-                                    <!-- Example Content -->
-                                
-                                    <div class="row">
-                                    
-                                        <div class="col-sm-12">
-                                            <textarea id="res_edit" class="form-control" style="min-height:300px"></textarea>
-                                        </div>
-                                        <div class="col-sm-12" style="display: none">
-                                            <textarea id="res" class="form-control" style="min-height:300px"></textarea>
-                                        </div>
+                            </div>
+                            <div class="block" style="padding-bottom:30px">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="text" id="keys" name="keys" class="form-control ui-wizard-content"
+                                            placeholder="key">
                                     </div>
-                                    <!-- <div class="row">
+                                </div>
+
+                                <!-- Example Content -->
+
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <textarea id="res_edit" class="form-control" style="min-height:300px"></textarea>
+                                    </div>
+                                    <div class="col-sm-12" style="display: none">
+                                        <textarea id="res" class="form-control" style="min-height:300px"></textarea>
+                                    </div>
+                                </div>
+                                <!-- <div class="row">
                                             <div class="col-sm-2">
                                                 <button type="submit" id="save_btn" onclick="save()" class="btn btn-effect-ripple btn-primary" style="overflow: hidden; position: relative;">save</button>
                                             </div>
                                     </div> -->
-                                    <!-- </pre> -->
-                                    <!-- END Example Content -->
+                                <!-- </pre> -->
+                                <!-- END Example Content -->
+                            </div>
+                        </div>
+                        <div class="page-content-dashboard" v-if="cur_session.id===undefined">
+                            <div class="row">
+                                <div class="col-sm-3 col-lg-3" v-for="d in driver" keys="d.id" v-on:click="create_new_session(d)">
+                                    <a class="widget">
+                                        <div class="widget-content widget-content-mini text-right clearfix">
+                                            <div class="widget-icon pull-left themed-background">
+                                                <i class="gi gi-cardio text-light-op"></i>
+                                            </div>
+                                            <h2 class="widget-heading h3">
+                                                <strong><span data-toggle="counter" data-to="2835">{{d.name}}</span></strong>
+                                            </h2>
+                                            <span class="text-muted"></span>
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="page-content-dashboard">
-                                    <div class="row">
-                                        <div class="col-sm-6 col-lg-3" v-for="d in driver" keys="d.id" v-on:click="save_new_session(d)" >
-                                            <a  class="widget">
-                                                <div class="widget-content widget-content-mini text-right clearfix" >
-                                                    <div class="widget-icon pull-left themed-background">
-                                                        <i class="gi gi-cardio text-light-op"></i>
-                                                    </div>
-                                                    <h2 class="widget-heading h3">
-                                                        <strong><span data-toggle="counter" data-to="2835">{{d.name}}</span></strong>
-                                                    </h2>
-                                                    <span class="text-muted"></span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                            </div>
-                            <!-- END Example Block -->
                         </div>
-                        <!-- END Page Content -->
+                        <!-- END Example Block -->
                     </div>
-                    <!-- END Main Container -->
+                    <!-- END Page Content -->
                 </div>
-                <!-- END Page Container -->
-            </div> 
-       </div>
-    </body>
-    
-    <script src="./src/app.js"></script>
+                <!-- END Main Container -->
+            </div>
+            <!-- END Page Container -->
+        </div>
+    </div>
+</body>
+
+<script src="./src/app.js"></script>
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-127794262-1"></script>
-    <script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127794262-1"></script>
+<script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-127794262-1');
-    </script>
+</script>
+
 </html>
