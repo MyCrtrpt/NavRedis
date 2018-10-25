@@ -1,0 +1,28 @@
+{
+    "eslint.enable": true,
+    "eslint.run": "onType",
+    "eslint.options": {
+    "extensions": [
+    ".js",
+    ".vue"
+    ]
+    },
+    // 启用后，按下 TAB 键，将展开 Emmet 缩写。
+    // "emmet.triggerExpansionOnTab": true,
+    // 保存时保存为单引号
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "editor.tabSize": 2,
+    "window.zoomLevel": 0,
+    "git.autofetch": true,
+    // Turns auto fix on save on or off.
+    "eslint.autoFixOnSave": true,
+    // 控制编辑器是否应在键入后自动设置行的格式
+    "editor.formatOnType": false,
+    // 控制编辑器是否应自动设置粘贴内容的格式。格式化程序必须可用并且能设置文档中某一范围的格式。
+    "editor.formatOnPaste": false,
+    // 保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器。
+    "editor.formatOnSave": true,
+    // 控制编辑器是否在用户键入、粘贴或移动行时自动调整缩进。语言的缩进规则必须可用。
+    "editor.autoIndent": false,
+    }
